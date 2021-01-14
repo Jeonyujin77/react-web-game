@@ -1,12 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import GuGudan from './1.구구단/gugudan';
+// import GuGudan from './1.구구단/gugudan';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
-    <GuGudan />
+    {/* <GuGudan /> */}
   </React.StrictMode>,
   document.getElementById('root')
 );
