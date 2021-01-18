@@ -1,5 +1,6 @@
-import React, {Component} from 'react';
+const React = require('react');
 const { Component } = React;
+const Try = require('./Try');
 
 function getNumbers() {
 
@@ -20,6 +21,12 @@ class NumberBaseball extends Component {
 
     };
 
+    fruits = [
+        {fruit: '포도', taste: '맛있다'},
+        {fruit: '사과', taste: '맛있다'},
+        {fruit: '배', taste: '맛있다'}
+    ];
+
     render() {
         return (
             <>
@@ -30,9 +37,9 @@ class NumberBaseball extends Component {
                 </form>
                 <div>시도: {this.state.tries.length}</div>
                 <ul>
-                    {[].map((v) => {
+                    {this.fruits.map((v, i) => {
                         return (
-                            <li>{v}</li>
+                            <Try value={v} index={i} />
                         );
                     })}
                 </ul>
