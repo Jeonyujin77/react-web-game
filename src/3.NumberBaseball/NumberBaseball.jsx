@@ -13,12 +13,15 @@ class NumberBaseball extends Component {
         tries: []
     };
 
-    onSubmitForm = () => {
-
+    onSubmitForm = (e) => {
+        e.preventDefault();
+        console.log(this.state.value);
     };
 
-    onChangeInput = () => {
-
+    onChangeInput = (e) => {
+        this.setState({
+            value: e.target.value
+        });
     };
 
     fruits = [
@@ -39,7 +42,7 @@ class NumberBaseball extends Component {
                 <ul>
                     {this.fruits.map((v, i) => {
                         return (
-                            <Try value={v} index={i} />
+                            <Try key={v.fruit + v.taste} value={v} index={i} />
                         );
                     })}
                 </ul>
