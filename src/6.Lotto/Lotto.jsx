@@ -23,7 +23,7 @@ class Lotto extends Component {
 
     timeouts = [];
 
-    componentDidMount() {
+    runTimesouts = () => {
         const { winNumbers } = this.state;
         for (let i = 0; i < winNumbers.length - 1; i++) {
             this.timeouts = setTimeout(() => {
@@ -41,13 +41,34 @@ class Lotto extends Component {
                redo: true
            });
         }, 7000);
-    }
+    };
+
+    componentDidMount() {
+        this.runTimesouts();
+    };
+
+    componentDidUpdate(prevProps, prevState) {
+        const { winBalls } = this.state;
+        if(winBalls.length === 0) {
+            this.runTimesouts();
+        }
+    };
 
     componentWillUnmount() {
         this.timeouts.forEach((v) => {
             clearTimeout(v);
         });
-    }
+    };
+
+    onClickRedo = () => {
+        this.setState({
+            winNumbers: getWinNumbers(), //당첨숫자들
+            winBalls: [], // 당첨공들
+            bonus: null, // 보너스공
+            redo: false,
+        });
+        this.timeouts = [];
+    };
 
     render() {
         const { winBalls, bonus, redo } = this.state;
