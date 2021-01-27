@@ -3,7 +3,11 @@ const { Component } = React;
 const { useState } = React;
 const { useRef } = React;
 const { useEffect } = React;
+const { useMemo } = React;
+const { useCallback } = React;
 const Ball = require('./Ball');
+
+
 
 function getWinNumbers() {
     console.log('getWinNumbers');
@@ -18,7 +22,8 @@ function getWinNumbers() {
 }
 
 const Lotto = () => {
-    const [winNumbers, SetWinNumbers] = useState(getWinNumbers()); // 당첨숫자들
+    const lottoNumbers = useMemo(() => getWinNumbers(), []); // 함수결과값들을 기억해둔다. => 중복 실행 방지
+    const [winNumbers, SetWinNumbers] = useState(lottoNumbers); // 당첨숫자들
     const [winBalls, setWinBalls] = useState([]); // 당첨공들
     const [bonus, setBonus] = useState(null); // 보너스공
     const [redo, setRedo] = useState(false); // 재시작여부
@@ -38,13 +43,15 @@ const Lotto = () => {
         }, 7000);
     }
 
-    const onClickRedo = () => {
+    // useCallback => 함수 자체를 기억. 새로 생성 안 함.
+    const onClickRedo = useCallback(() => {
+        console.log(winNumbers);
         SetWinNumbers(getWinNumbers());
         setWinBalls([]);
         setBonus(null);
         setRedo(false);
         timeouts.current = [];
-    };
+    },[winNumbers]);
 
 
     useEffect(() => {
