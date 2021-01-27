@@ -22,6 +22,8 @@ function getWinNumbers() {
 }
 
 const Lotto = () => {
+    // Hooks의 순서 중요 (최상위)
+    // 조건문안에 절대 넣으면 안되고 함수나 반복문 안에도 웬만하면 넣으면 안됨 
     const lottoNumbers = useMemo(() => getWinNumbers(), []); // 함수결과값들을 기억해둔다. => 중복 실행 방지
     const [winNumbers, SetWinNumbers] = useState(lottoNumbers); // 당첨숫자들
     const [winBalls, setWinBalls] = useState([]); // 당첨공들
@@ -45,7 +47,7 @@ const Lotto = () => {
 
     // useCallback => 함수 자체를 기억. 새로 생성 안 함.
     const onClickRedo = useCallback(() => {
-        console.log(winNumbers);
+        console.log(winNumbers);    
         SetWinNumbers(getWinNumbers());
         setWinBalls([]);
         setBonus(null);
@@ -65,6 +67,15 @@ const Lotto = () => {
     },[winNumbers]);
 
 
+    // ComponentDidUpdate만 실행, ComponentDidMount에서는 아무것도 안함.
+    // const mounted = useRef(false);
+    // useEffect(() => {
+    //     if(!mounted.current) {
+    //         mounted.current = true;
+    //     } else {
+    //         // To Do
+    //     }
+    // });
 
     return (
         <>
