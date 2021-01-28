@@ -1,6 +1,6 @@
 const React = require('react');
 const ReactDom = require('react-dom');
 
-const Tictactoe = require('./Tictactoe');
+const TicTacToe = require('./TicTacToe');
 
-ReactDom.render(<Tictactoe />, document.querySelector('#root'));
+ReactDom.render(<TicTacToe />, document.querySelector('#root'));

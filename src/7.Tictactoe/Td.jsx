@@ -2,7 +2,7 @@ const React = require('react');
 
 const Td = () => {
     return (
-        <Td>{''}</Td>
+        <td>{''}</td>
     )
 };
 
