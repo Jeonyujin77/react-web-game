@@ -1,4 +1,4 @@
-import React, {useEffect, useState, useReducer, useCallback} from 'react';
+import React, {useEffect, useState, useReducer, useCallback, memo} from 'react';
 import Table from './Table';
 
 const initialState = {
@@ -57,7 +57,7 @@ const reducer = (state, action) => {
     }
 };
 
-const TicTacToe = () => {
+const TicTacToe = memo(() => {
     const [state, dispatch] = useReducer(reducer,initialState);
     const {tableData, turn, winner, recentCell} = state;
 
@@ -112,6 +112,6 @@ const TicTacToe = () => {
         </>
     );
 
-}
+});
 
 export default TicTacToe;
